@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Blog App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <h1>Blog Posts</h1>
+
+    <div style="text-align:center;">
+        <a href="/add">
+            <button>Add New Blog Post</button>
+        </a>
+    </div>
+
+    <br>
+
+    {% for post in posts %}
+    <div class="post-card">
+
+        {% if post.image %}
+        <img src="{{ url_for('static', filename='assets/' ~ post.image) }}">
+        {% endif %}
+
+        <h2>{{ post.title }}</h2>
+        <p><strong>{{ post.author }}</strong></p>
+        <p>Created: {{ post.created }}</p>
+        <p>Updated: {{ post.updated }}</p>
+
+        <div class="post-actions">
+            <a href="/view/{{ post.id }}">View</a>
+            <a href="/edit/{{ post.id }}">Edit</a>
+            <a href="/delete/{{ post.id }}">Delete</a>
+        </div>
+
+    </div>
+    {% endfor %}
+
+    {% if posts|length == 0 %}
+        <p style="text-align:center; font-size:18px;">No blog posts yet. Create one!</p>
+    {% endif %}
+</div>
+
+</body>
+</html>

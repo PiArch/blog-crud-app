@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ post.title }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <div class="card">
+
+        <h1>{{ post.title }}</h1>
+        <p><strong>{{ post.author }}</strong></p>
+
+        {% if post.image %}
+        <img src="{{ url_for('static', filename='assets/' ~ post.image) }}">
+        {% endif %}
+
+        <p style="margin-top:20px;">{{ post.content }}</p>
+
+        <p style="font-size:14px;">
+            Created: {{ post.created }} <br>
+            Updated: {{ post.updated }}
+        </p>
+
+        <a class="back-link" href="/">← Back</a>
+    </div>
+</div>
+
+</body>
+</html>
